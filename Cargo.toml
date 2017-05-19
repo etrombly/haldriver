@@ -4,4 +4,4 @@ version = "0.1.0"
 authors = ["Eric Trombly <etrombly@yahoo.com>"]
 
 [dependencies]
-hal = { path = "../hal"}
+hal = { git = "https://github.com/etrombly/hal" }
