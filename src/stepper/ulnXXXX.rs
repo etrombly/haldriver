@@ -2,19 +2,18 @@ use hal::pin::{Pin, State};
 pub use ::stepper::Stepper as halStepper;
 pub use ::stepper::Direction;
 
-const STEPS:[[State; 4]; 9] = [[State::LOW,State::LOW,State::LOW,State::HIGH],
-                [State::LOW,State::LOW,State::HIGH,State::HIGH],
-                [State::LOW,State::LOW,State::HIGH,State::LOW],
-                [State::LOW,State::HIGH,State::HIGH,State::LOW],
+const STEPS:[[State; 4]; 8] = [[State::HIGH,State::HIGH,State::LOW,State::LOW],
                 [State::LOW,State::HIGH,State::LOW,State::LOW],
-                [State::HIGH,State::HIGH,State::LOW,State::LOW],
-                [State::HIGH,State::LOW,State::LOW,State::LOW],
+                [State::LOW,State::HIGH,State::HIGH,State::LOW],
+                [State::LOW,State::LOW,State::HIGH,State::LOW],
+                [State::LOW,State::LOW,State::HIGH,State::HIGH],
+                [State::LOW,State::LOW,State::LOW,State::HIGH],
                 [State::HIGH,State::LOW,State::LOW,State::HIGH],
-                [State::LOW,State::LOW,State::LOW,State::LOW]];
+                [State::HIGH,State::LOW,State::LOW,State::LOW],];
 
 pub struct Stepper<'a> {
     pub direction: Direction,
-    pub index: u16,
+    pub index: u8,
     pub pin1: &'a Pin,
     pub pin2: &'a Pin,
     pub pin3: &'a Pin,
