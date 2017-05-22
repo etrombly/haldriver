@@ -26,14 +26,22 @@ impl<'a> halStepper for Stepper<'a>{
     }
 
     fn step(&mut self){
-        let index = self.index as usize;
+        let index = self.index;
         match self.direction {
-            Direction::RIGHT => self.index += 1,
-            Direction::LEFT => self.index -= 1,
+            Direction::RIGHT => {if self.index <7 {
+                    self.index += 1;
+                } else {
+                    self.index = 0;
+                }},
+            Direction::LEFT => {if self.index > 0 {
+                    self.index -= 1;
+                } else {
+                    self.index = 7;
+                }},
         }
-        self.pin1.digital_write(&STEPS[index][0]);
-        self.pin2.digital_write(&STEPS[index][1]);
-        self.pin3.digital_write(&STEPS[index][2]);
-        self.pin4.digital_write(&STEPS[index][3]);
+        self.pin1.digital_write(&STEPS[index as usize][0]);
+        self.pin2.digital_write(&STEPS[index as usize][1]);
+        self.pin3.digital_write(&STEPS[index as usize][2]);
+        self.pin4.digital_write(&STEPS[index as usize][3]);
     }
 }
