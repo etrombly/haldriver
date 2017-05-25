@@ -11,16 +11,17 @@ const STEPS:[[State; 4]; 8] = [[State::HIGH,State::HIGH,State::LOW,State::LOW],
                 [State::HIGH,State::LOW,State::LOW,State::HIGH],
                 [State::HIGH,State::LOW,State::LOW,State::LOW],];
 
-pub struct Stepper<'a> {
+pub struct Stepper<'a, T> 
+where T: 'a{
     pub direction: Direction,
     pub index: u8,
-    pub pin1: &'a Pin,
-    pub pin2: &'a Pin,
-    pub pin3: &'a Pin,
-    pub pin4: &'a Pin,
+    pub pin1: &'a Pin<T>,
+    pub pin2: &'a Pin<T>,
+    pub pin3: &'a Pin<T>,
+    pub pin4: &'a Pin<T>,
 }
 
-impl<'a> halStepper for Stepper<'a>{
+impl<'a, T> halStepper for Stepper<'a, T>{
     fn direction(&mut self, direction: Direction){
         self.direction = direction;
     }
