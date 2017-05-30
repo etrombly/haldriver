@@ -39,7 +39,7 @@ impl<'a, T> halStepper for Stepper<'a, T>{
         self.pin3.digital_write(&STEPS[index as usize][2]);
         self.pin4.digital_write(&STEPS[index as usize][3]);
 
-        let self.index = match self.direction {
+        self.index = match self.direction {
             Direction::RIGHT => {if self.index < 3 {
                     self.index + 1
                 } else {
